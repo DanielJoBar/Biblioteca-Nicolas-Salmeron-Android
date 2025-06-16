@@ -4,20 +4,21 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.TextView
+import androidx.activity.viewModels // Importar viewModels para ViewModel
 import androidx.appcompat.app.AppCompatActivity
-import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.bibliotecanicolassalmeron.data.database.entities.UsuarioEntity
 import com.example.bibliotecanicolassalmeron.data.repository.UsuarioRepository
+import com.example.bibliotecanicolassalmeron.ui.viewmodels.ReservaListViewModel // Importar tu ViewModel
+import com.example.bibliotecanicolassalmeron.ui.viewmodels.ReservationEvent
+import com.google.android.material.snackbar.Snackbar // Importar Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.util.Locale
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -25,13 +26,13 @@ class InnerActivity : AppCompatActivity() {
 
     var loggedUserName: String? = null
     var loggedUserEmail: String? = null
-
-    // Nueva propiedad para almacenar los datos completos del usuario
     var currentUser: UsuarioEntity? = null
 
-    // Instancia de UsuarioRepository, inyectada con Hilt
     @Inject
     lateinit var usuarioRepository: UsuarioRepository
+
+    // Obtener la instancia del ReservaListViewModel
+    private val reservaListViewModel: ReservaListViewModel by viewModels()
 
     private val navController by lazy {
         (supportFragmentManager.findFragmentById(R.id.inner_containerView) as NavHostFragment).navController
@@ -43,31 +44,20 @@ class InnerActivity : AppCompatActivity() {
 
         val toolbar = findViewById<com.google.android.material.appbar.MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        // Cargar idioma antes de inflar vistas
-        val prefs = getSharedPreferences("settings", MODE_PRIVATE)
-        val lang = prefs.getString("app_language", Locale.getDefault().language)
-        setLocale(lang ?: "es")
-        onCreate(savedInstanceState)
-        setContentView(R.layout.inner_activity)
 
-        // Recuperar los datos enviados desde Login/Register
         loggedUserEmail = intent.getStringExtra("email")
         loggedUserName = intent.getStringExtra("name")
 
-        // Carga los datos completos del usuario en InnerActivity.
-        // Puedes hacerlo dentro de un launch en lifecycleScope:
         loggedUserEmail?.let { email ->
             lifecycleScope.launch {
                 currentUser = usuarioRepository.getUserByEmail(email)
-                // Puedes también actualizar el toolbar, si necesitas mostrar el nombre, por ejemplo:
                 currentUser?.let {
-                    loggedUserName = it.name   // O lo que desees mostrar
+                    loggedUserName = it.name
                     invalidateOptionsMenu()
                 }
             }
         }
 
-        // Configuración del NavHostFragment y Toolbar (como ya lo tienes)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.inner_containerView) as NavHostFragment
         val navController = navHostFragment.navController
 
@@ -87,14 +77,12 @@ class InnerActivity : AppCompatActivity() {
                 R.id.registerFragment -> {
                     toolbar.visibility = View.GONE
                 }
-
                 R.id.bookFormFragment,
                 R.id.libroDetailFragment -> {
                     toolbar.visibility = View.VISIBLE
                     supportActionBar?.setDisplayHomeAsUpEnabled(true)
                     invalidateOptionsMenu()
                 }
-
                 else -> {
                     toolbar.visibility = View.VISIBLE
                     supportActionBar?.setDisplayHomeAsUpEnabled(false)
@@ -102,16 +90,33 @@ class InnerActivity : AppCompatActivity() {
                 }
             }
         }
+
+        // Observar los mensajes del Snackbar desde el ViewModel
+        val rootView: View = findViewById(android.R.id.content) // O la vista raíz de tu layout
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                reservaListViewModel.eventFlow.collect { event ->
+                    when (event) {
+                        is ReservationEvent.ReservationAddedSuccess -> {
+                            Snackbar.make(rootView, "Reserva agregada con éxito", Snackbar.LENGTH_LONG).show()
+                        }
+                        is ReservationEvent.ReservationAlreadyExists -> {
+                            Snackbar.make(rootView, "La reserva para ${event.bookTitle} ya existe", Snackbar.LENGTH_LONG).show()
+                        }
+                        is ReservationEvent.ReservationDeletedSuccess -> {
+                            Snackbar.make(rootView, "Reserva eliminada con éxito", Snackbar.LENGTH_LONG).show()
+                        }
+                        is ReservationEvent.GeneralError -> {
+                            Snackbar.make(rootView, "Ocurrió un error", Snackbar.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+        }
+
     }
-    fun setLocale(languageCode: String) {
-        val locale = Locale(languageCode)
-        Locale.setDefault(locale)
-        val config = resources.configuration
-        config.setLocale(locale)
-        applicationContext.createConfigurationContext(config)
-    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // Aquí no ponemos condición, ya que InnerActivity es la actividad principal
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
@@ -129,7 +134,6 @@ class InnerActivity : AppCompatActivity() {
 
         return super.onPrepareOptionsMenu(menu)
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -163,6 +167,4 @@ class InnerActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
-
-
 }

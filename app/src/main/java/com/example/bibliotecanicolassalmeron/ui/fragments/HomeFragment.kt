@@ -10,6 +10,11 @@ import com.example.bibliotecanicolassalmeron.InnerActivity
 import com.example.bibliotecanicolassalmeron.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Fragmento principal de inicio de la aplicación.
+ *
+ * Muestra la pantalla de bienvenida y obtiene el correo electrónico del usuario logueado desde la actividad principal.
+ */
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
@@ -18,6 +23,9 @@ class HomeFragment : Fragment() {
 
     private var email: String? = null
 
+    /**
+     * Infla el layout correspondiente al fragmento usando ViewBinding.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,12 +34,19 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Se ejecuta cuando la vista fue creada.
+     * Obtiene el email del usuario logueado desde la actividad padre.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val innerActivity = activity as? InnerActivity
         email = innerActivity?.loggedUserEmail
     }
 
+    /**
+     * Limpia el binding para evitar fugas de memoria.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

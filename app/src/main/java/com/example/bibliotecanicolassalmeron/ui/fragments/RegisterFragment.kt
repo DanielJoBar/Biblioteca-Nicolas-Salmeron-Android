@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -19,29 +19,47 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * Fragmento que gestiona el registro de nuevos usuarios.
+ *
+ * Funcionalidades:
+ * - Recoge y valida los datos del formulario de registro.
+ * - Comprueba si el correo ya está registrado.
+ * - Inserta un nuevo usuario en la base de datos local.
+ * - Redirige al usuario a la actividad principal tras el registro.
+ */
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
+    // ViewBinding para acceder a los elementos de la vista de forma segura
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
 
+    // Repositorio de usuarios inyectado con Hilt para acceder a la base de datos
     @Inject
     lateinit var usuarioRepository: UsuarioRepository
 
+    /**
+     * Infla el layout asociado al fragmento usando ViewBinding.
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    /**
+     * Configura la lógica del formulario de registro una vez creada la vista.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Acción del botón de registro
         binding.buttonRegister.setOnClickListener {
-            // Recoger valores del formulario
+            // Recoger datos ingresados por el usuario
             val nombre = binding.editTextNombre.text.toString().trim()
             val apellidos = binding.editTextApellidos.text.toString().trim()
             val username = binding.editTextNombreUsuario.text.toString().trim()
@@ -49,28 +67,30 @@ class RegisterFragment : Fragment() {
             val password = binding.editTextContra.text.toString().trim()
             val repetir = binding.editTextRepetirContra.text.toString().trim()
 
+            // Verifica que ningún campo esté vacío
             if (nombre.isEmpty() || apellidos.isEmpty() || username.isEmpty() ||
                 email.isEmpty() || password.isEmpty() || repetir.isEmpty()
             ) {
-                Toast.makeText(requireContext(), "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            if (password != repetir) {
-                Toast.makeText(requireContext(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, R.string.error_complete_all_fields, Snackbar.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
+            // Verifica que ambas contraseñas coincidan
+            if (password != repetir) {
+                Snackbar.make(binding.root, R.string.error_passwords_not_match, Snackbar.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Lanza una corrutina para operaciones en base de datos
             lifecycleScope.launch {
+                // Comprueba si ya existe un usuario con el mismo email
                 val existingUser = usuarioRepository.getUserByEmail(email)
                 if (existingUser != null) {
-                    Toast.makeText(
-                        requireContext(),
-                        "El correo ya existe. Utiliza otro",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Snackbar.make(binding.root, R.string.error_email_exists, Snackbar.LENGTH_SHORT).show()
                     return@launch
                 }
 
+                // Crea un nuevo objeto UsuarioEntity con los datos ingresados
                 val usuarioEntity = UsuarioEntity(
                     id = email,
                     name = nombre,
@@ -84,24 +104,32 @@ class RegisterFragment : Fragment() {
                     pictureUrl = ""
                 )
 
+                // Inserta el nuevo usuario en la base de datos
                 usuarioRepository.insertUsuario(usuarioEntity)
-                Toast.makeText(requireContext(), "Registro completado", Toast.LENGTH_SHORT).show()
 
+                // Muestra mensaje de éxito
+                Snackbar.make(binding.root, R.string.success_registered, Snackbar.LENGTH_SHORT).show()
+
+                // Redirige a la actividad principal (InnerActivity) y elimina el back stack
                 val intent = Intent(requireContext(), InnerActivity::class.java).apply {
-                    putExtra("email", email)
+                    putExtra("email", email) // Pasa el email del usuario
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 }
                 startActivity(intent)
                 requireActivity().finish()
             }
         }
+
+        // Botón que redirige al fragmento de login
         val goToLoginButton = view.findViewById<Button>(R.id.btnGoToLogin)
         goToLoginButton.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
-
     }
 
+    /**
+     * Libera el binding para evitar fugas de memoria.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

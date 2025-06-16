@@ -15,13 +15,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="60dp"
+
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/searchEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/looply_marker" />
+            android:fontFamily="@font/looply_marker"
+            android:background="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCatalog"
@@ -43,7 +44,7 @@
         app:iconTint="@android:color/black"
         app:iconSize="26dp"
         android:contentDescription="@string/form_button_desc"
-        app:backgroundTint="?attr/colorPrimary"
+        app:backgroundTint="#4CAF50"
         app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

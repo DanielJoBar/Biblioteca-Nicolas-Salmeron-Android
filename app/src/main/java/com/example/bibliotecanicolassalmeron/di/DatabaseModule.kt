@@ -13,34 +13,65 @@ import dagger.hilt.components.SingletonComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
+/**
+ * Módulo Dagger Hilt para proveer instancias de bases de datos y DAOs.
+ *
+ * Este módulo se instala en el SingletonComponent para que sus dependencias tengan ciclo de vida global.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
-    // Proveer la base de datos principal (solo lectura desde la API)
+    /**
+     * Provee la base de datos principal (solo lectura desde la API).
+     *
+     * @param context Contexto de la aplicación.
+     * @return Instancia singleton de [BibliotecaDatabase].
+     */
     @Provides
     @Singleton
     fun provideBibliotecaDatabase(@ApplicationContext context: Context): BibliotecaDatabase {
         return BibliotecaDatabase.getInstance(context)
     }
 
-    // Proveer la base de datos local (almacenamiento de reservas y datos del usuario)
+    /**
+     * Provee la base de datos local para almacenamiento de reservas y datos del usuario.
+     *
+     * @param context Contexto de la aplicación.
+     * @return Instancia singleton de [ReservasDatabase].
+     */
     @Provides
     @Singleton
     fun provideReservasDatabase(@ApplicationContext context: Context): ReservasDatabase {
         return ReservasDatabase.getInstance(context)
     }
 
-    // DAOs para la base de datos BibliotecaDatabase
+    /**
+     * Provee el DAO para acceder a libros en la base de datos principal.
+     *
+     * @param database Instancia de [BibliotecaDatabase].
+     * @return DAO de libros [LibroDao].
+     */
     @Provides
     @Singleton
     fun provideLibroDao(database: BibliotecaDatabase): LibroDao = database.libroDao()
 
+    /**
+     * Provee el DAO para acceder a usuarios en la base de datos principal.
+     *
+     * @param database Instancia de [BibliotecaDatabase].
+     * @return DAO de usuarios [UsuarioDao].
+     */
     @Provides
     @Singleton
     fun provideUsuarioDao(database: BibliotecaDatabase): UsuarioDao = database.usuarioDao()
 
-    // DAO para la base de datos LocalBibliotecaDatabase
+    /**
+     * Provee el DAO para acceder a reservas en la base de datos local.
+     *
+     * @param database Instancia de [ReservasDatabase].
+     * @return DAO de reservas [ReservaDao].
+     */
     @Provides
     @Singleton
     fun provideReservaDao(database: ReservasDatabase): ReservaDao = database.reservaDao()

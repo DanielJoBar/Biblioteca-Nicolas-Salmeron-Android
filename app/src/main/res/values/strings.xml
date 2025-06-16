@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BibliotecaNicolasSalmeron</string>
-    <!--  TODO: Remove or change this placeholder text  -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="toolbar_title_inner">Inner Activity</string>
     <string name="fr_login_user">Usuario</string>
     <string name="form_button_desc">Añadir nuevo</string>
     <string name="search_hint">Buscar</string>
@@ -30,7 +29,7 @@
     <string name="email_hint">Email</string>
     <string name="password_hint">Contraseña</string>
     <string name="login_button">Iniciar Sesión</string>
-    <string name="register_button">Registrar</string>
+    <string name="register_button">Registrarse</string>
     <string-array name="genre_options">
         <item>Realista</item>
         <item>Ficción</item>
@@ -47,4 +46,39 @@
     <string name="go_to_login">¿Ya tienes cuenta? Inicia sesión</string>
     <string name="texto_bienvenida">" Explora nuestro amplio catálogo de libros, desde clásicos hasta las últimas publicaciones. Encuentra tu próxima lectura favorita."</string>
     <string name="texto_institucional">" La Biblioteca Nicolás Salmerón de la Universidad de Almería tiene como objetivo facilitar el acceso y la difusión de los recursos de información y colaborar en los procesos de generación del conocimiento, a fin de contribuir a la consecución de los fines de la Universidad. A nivel cooperativo destaca su pertenencia a diversos organismos:\n\n - El Consorcio de Bibliotecas Universitarias de Andalucía (CBUA)\n - La Red Española de Bibliotecas Universitarias y Científicas (REBIUN)\n - Asociación de Usuarios de Ex Libris en España (Expania)."</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_catalog">Catálogo</string>
+    <string name="menu_reservations">Reservas</string>
+    <string name="menu_about">Acerca de</string>
+    <string name="title_libro_detail">Detalle del Libro</string>
+    <string name="title_book_form">Formulario de Libro</string>
+    <string name="title_user_profile">Perfil de Usuario</string>
+    <string name="title_camera">Cámara</string>
+    <string name="permission_gallery_denied">Permiso para acceder a la galería denegado</string>
+    <string name="permission_gallery_needed">Necesitamos permiso para acceder a la galería</string>
+    <string name="error_fields_required">Por favor, rellena todos los campos</string>
+    <string name="book_updated">Libro actualizado correctamente</string>
+    <string name="book_created">Libro creado correctamente</string>
+    <string name="error_no_user_data">No se pudo obtener los datos del usuario</string>
+    <string name="reserva_creada_para">Reserva creada para &quot;%1$s&quot;</string>
+    <string name="success_login">Inicio de sesión correcto</string>
+    <string name="error_invalid_credentials">Correo o contraseña incorrectos</string>
+    <string name="error_complete_all_fields">Por favor, completa todos los campos</string>
+    <string name="error_passwords_not_match">Las contraseñas no coinciden</string>
+    <string name="error_email_exists">El correo ya existe. Utiliza otro</string>
+    <string name="success_registered">Registro completado</string>
+    <string name="reservation_deleted">Reserva eliminada</string>
+    <string name="unknown_name">Nombre desconocido</string>
+    <string name="unknown_surname">Apellidos desconocidos</string>
+    <string name="unknown_email">Correo desconocido</string>
+    <string name="signing_out">Cerrando sesión...</string>
+    <string name="deleting_account">Borrando cuenta...</string>
+    <string name="no_user_data_found">No se encontraron datos del usuario</string>
+    <string name="spanish">Español</string>
+    <string name="english">English</string>
+    <string name="russian">Русский</string>
+    <string name="error_reserva_existente">Ya tienes una reserva para "%1$s"</string>
+    <string name="reserva_exitosa">¡Reserva realizada con éxito!</string>
+    <string name="reserva_eliminada">Reserva eliminada correctamente.</string>
+
 </resources>

@@ -8,11 +8,25 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.math.ceil
 
+/**
+ * Servicio para mapear entre [FirebaseLibro] y la entidad local [LibroEntity].
+ *
+ * @property firestore Instancia de FirebaseFirestore para acceso a datos remotos.
+ */
 @Singleton
 class LibroMappingFirebaseService @Inject constructor(
     private val firestore: FirebaseFirestore
 ) {
 
+    /**
+     * Convierte una lista paginada de [FirebaseLibro] a un objeto paginado de [LibroEntity].
+     *
+     * @param page Página actual.
+     * @param pageSize Tamaño de la página.
+     * @param pages Total de elementos.
+     * @param data Lista de libros Firebase.
+     * @return Objeto paginado con entidades locales de libros.
+     */
     fun getPaginated(page: Int, pageSize: Int, pages: Int, data: List<FirebaseLibro>): Paginated<LibroEntity> {
         return Paginated(
             data = data.map { getOne(it) },
@@ -22,6 +36,12 @@ class LibroMappingFirebaseService @Inject constructor(
         )
     }
 
+    /**
+     * Convierte un [FirebaseLibro] en una entidad local [LibroEntity].
+     *
+     * @param data Libro en formato Firebase.
+     * @return Entidad local del libro.
+     */
     fun getOne(data: FirebaseLibro): LibroEntity {
         return LibroEntity(
             localId = 0,
@@ -35,9 +55,16 @@ class LibroMappingFirebaseService @Inject constructor(
         )
     }
 
+    /**
+     * Convierte una entidad local [LibroEntity] en un modelo [FirebaseLibro] para agregar.
+     *
+     * Nota: El id no se envía al agregar, solo se genera en Firebase.
+     *
+     * @param entity Entidad local del libro.
+     * @return Modelo Firebase para inserción.
+     */
     fun setAdd(entity: LibroEntity): FirebaseLibro {
         return FirebaseLibro(
-            // Si se requiere enviar el id, usa entity.bookId; de lo contrario, se ignora al insertar.
             author = entity.author,
             genre = entity.genero,
             isbn = entity.isbn,
@@ -47,6 +74,12 @@ class LibroMappingFirebaseService @Inject constructor(
         )
     }
 
+    /**
+     * Convierte una entidad local [LibroEntity] en un modelo [FirebaseLibro] para actualizar.
+     *
+     * @param entity Entidad local del libro.
+     * @return Modelo Firebase para actualización.
+     */
     fun setUpdate(entity: LibroEntity): FirebaseLibro {
         return FirebaseLibro(
             id = entity.bookId,

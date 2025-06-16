@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.bibliotecanicolassalmeron.ui.fragments.HomeFragment"
-        android:label="Home">
+        android:label="@string/menu_home">
         <argument
             android:name="email"
             app:argType="string" />
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/catalogFragment"
         android:name="com.example.bibliotecanicolassalmeron.ui.fragments.CatalogFragment"
-        android:label="Catalog" >
+        android:label="@string/menu_catalog">
         <action
             android:id="@+id/action_catalogFragment_to_libroDetailFragment"
             app:destination="@id/libroDetailFragment" />
@@ -29,55 +29,49 @@
     <fragment
         android:id="@+id/reservationFragment"
         android:name="com.example.bibliotecanicolassalmeron.ui.fragments.ReservationFragment"
-        android:label="Reservations" />
+        android:label="@string/menu_reservations" />
 
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.bibliotecanicolassalmeron.ui.fragments.AboutFragment"
-        android:label="About" />
-
-    <action
-        android:id="@+id/action_home_to_catalog"
-        app:destination="@id/catalogFragment" />
+        android:label="@string/menu_about" />
 
     <fragment
         android:id="@+id/libroDetailFragment"
         android:name="com.example.bibliotecanicolassalmeron.ui.fragments.LibroDetailFragment"
-        android:label="Detalle del Libro">
+        android:label="@string/title_libro_detail">
         <argument
             android:name="book"
             app:argType="com.example.bibliotecanicolassalmeron.data.model.Libro"
-            app:nullable="true"
-            />
+            app:nullable="true" />
         <action
             android:id="@+id/action_libroDetailFragment_to_bookFormFragment"
             app:destination="@id/bookFormFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/bookFormFragment"
         android:name="com.example.bibliotecanicolassalmeron.ui.fragments.BookFormFragment"
-        android:label="Formulario de Libro">
-
+        android:label="@string/title_book_form">
         <argument
             android:name="mode"
             app:argType="string" />
         <argument
             android:name="book"
             app:argType="com.example.bibliotecanicolassalmeron.data.model.Libro"
-            app:nullable="true"
-            />
+            app:nullable="true" />
         <action
             android:id="@+id/action_bookFormFragment_to_cameraFragment"
             app:destination="@id/cameraFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.example.bibliotecanicolassalmeron.ui.fragments.UserProfileFragment"
-        android:label="Perfil de Usuario">
-    </fragment>
+        android:label="@string/title_user_profile" />
+
     <fragment
         android:id="@+id/cameraFragment"
         android:name="com.example.bibliotecanicolassalmeron.ui.fragments.CameraFragment"
-        android:label="Camara" />
-
+        android:label="@string/title_camera" />
 </navigation>

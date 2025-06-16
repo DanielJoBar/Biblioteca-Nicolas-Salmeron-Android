@@ -6,16 +6,25 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 
+/**
+ * Actividad que muestra una pantalla de bienvenida (splash screen) durante 2 segundos
+ * antes de navegar a la pantalla principal (MainActivity).
+ */
 class SplashActivity : AppCompatActivity() {
+
+    companion object {
+        // Duración en milisegundos que se mostrará la pantalla splash
+        private const val SPLASH_DELAY: Long = 2000
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splashscreen)
 
-        // Espera 5 segundos antes de iniciar MainActivity
+        // Retrasar la navegación a MainActivity usando un Handler y el hilo principal
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }, 2000)
+        }, SPLASH_DELAY)
     }
 }

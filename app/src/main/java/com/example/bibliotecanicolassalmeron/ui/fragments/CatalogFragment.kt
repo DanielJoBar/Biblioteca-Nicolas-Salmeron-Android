@@ -2,7 +2,6 @@
 package com.example.bibliotecanicolassalmeron.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +22,11 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+/**
+ * Fragmento que muestra el catálogo de libros.
+ *
+ * Permite buscar libros, navegar a detalles, añadir nuevos y eliminar libros.
+ */
 @AndroidEntryPoint
 class CatalogFragment : Fragment() {
 
@@ -33,6 +37,9 @@ class CatalogFragment : Fragment() {
     private lateinit var adapter: LibroListAdapter
     private var fullLibroList: List<Libro> = emptyList()
 
+    /**
+     * Infla la vista del fragmento usando ViewBinding.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,6 +48,10 @@ class CatalogFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Configura la UI después de que la vista ha sido creada.
+     * Configura RecyclerView, búsqueda y listeners.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,6 +62,7 @@ class CatalogFragment : Fragment() {
             },
             onDeleteClick = { libro ->
                 viewModel.deleteLibro(libro)
+                // Reemplazado Toast por Snackbar con texto de recursos strings.xml
                 Snackbar.make(binding.root, getString(R.string.libro_eliminado), Snackbar.LENGTH_SHORT).show()
             }
         )
@@ -86,6 +98,9 @@ class CatalogFragment : Fragment() {
         }
     }
 
+    /**
+     * Limpia el binding para evitar fugas de memoria.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

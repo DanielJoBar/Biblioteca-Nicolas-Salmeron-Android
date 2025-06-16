@@ -9,10 +9,22 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.math.ceil
 
+/**
+ * Servicio que mapea objetos entre modelos de usuario extendido de Firebase y entidades locales.
+ *
+ * @property firestore Instancia de FirebaseFirestore para acceso a datos remotos.
+ */
 @Singleton
 class ExtendedUserMappingFirebaseService @Inject constructor(
     private val firestore: FirebaseFirestore
 ) {
+
+    /**
+     * Convierte un [FirebaseExtendedUser] a su correspondiente entidad local [UsuarioEntity].
+     *
+     * @param data Usuario extendido de Firebase.
+     * @return Entidad local de usuario.
+     */
     fun getOne(data: FirebaseExtendedUser): UsuarioEntity {
         return UsuarioEntity(
             localId = 0,
@@ -29,6 +41,15 @@ class ExtendedUserMappingFirebaseService @Inject constructor(
         )
     }
 
+    /**
+     * Genera un objeto paginado de entidades de usuario a partir de una lista de usuarios Firebase.
+     *
+     * @param page Página actual.
+     * @param pageSize Tamaño de página.
+     * @param pages Número total de elementos.
+     * @param data Lista de usuarios extendidos de Firebase.
+     * @return Objeto paginado con entidades de usuario.
+     */
     fun getPaginated(page: Int, pageSize: Int, pages: Int, data: List<FirebaseExtendedUser>): Paginated<UsuarioEntity> {
         return Paginated(
             data = data.map { getOne(it) },
@@ -38,6 +59,12 @@ class ExtendedUserMappingFirebaseService @Inject constructor(
         )
     }
 
+    /**
+     * Convierte una entidad local [UsuarioEntity] a un modelo Firebase para añadir.
+     *
+     * @param entity Entidad local de usuario.
+     * @return Modelo Firebase extendido de usuario.
+     */
     fun setAdd(entity: UsuarioEntity): FirebaseExtendedUser {
         return FirebaseExtendedUser(
             UID = entity.id,
@@ -46,7 +73,7 @@ class ExtendedUserMappingFirebaseService @Inject constructor(
             username = entity.username,
             email = entity.email,
             password = entity.password,
-            picture =  Picture(
+            picture = Picture(
                 large = entity.pictureLarge,
                 small = entity.pictureSmall,
                 thumbnail = entity.pictureThumbnail,
@@ -55,6 +82,12 @@ class ExtendedUserMappingFirebaseService @Inject constructor(
         )
     }
 
+    /**
+     * Convierte una entidad local [UsuarioEntity] a un modelo Firebase para actualizar.
+     *
+     * @param entity Entidad local de usuario.
+     * @return Modelo Firebase extendido de usuario.
+     */
     fun setUpdate(entity: UsuarioEntity): FirebaseExtendedUser {
         return FirebaseExtendedUser(
             id = entity.id,
@@ -64,7 +97,7 @@ class ExtendedUserMappingFirebaseService @Inject constructor(
             username = entity.username,
             email = entity.email,
             password = entity.password,
-            picture =  Picture(
+            picture = Picture(
                 large = entity.pictureLarge,
                 small = entity.pictureSmall,
                 thumbnail = entity.pictureThumbnail,
@@ -73,4 +106,3 @@ class ExtendedUserMappingFirebaseService @Inject constructor(
         )
     }
 }
-

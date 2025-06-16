@@ -7,27 +7,35 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewModelScope
 import com.example.bibliotecanicolassalmeron.InnerActivity
 import com.example.bibliotecanicolassalmeron.MainActivity
 import com.example.bibliotecanicolassalmeron.R
-import com.example.bibliotecanicolassalmeron.data.repository.UsuarioRepository
 import com.example.bibliotecanicolassalmeron.databinding.FragmentUserProfileBinding
 import com.example.bibliotecanicolassalmeron.ui.viewmodels.UsuarioListViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
+/**
+ * Fragmento que muestra el perfil del usuario actual.
+ *
+ * Funcionalidades:
+ * - Visualiza nombre, apellidos y email del usuario.
+ * - Permite cerrar sesión.
+ * - Permite eliminar la cuenta del usuario actual.
+ */
 @AndroidEntryPoint
 class UserProfileFragment : Fragment() {
 
+    // ViewBinding para acceso seguro a los elementos de la vista
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
+
+    // ViewModel que gestiona la lógica de los usuarios
     private val usuarioViewModel: UsuarioListViewModel by viewModels()
 
+    /**
+     * Infla el layout del fragmento utilizando ViewBinding.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,53 +44,65 @@ class UserProfileFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Lógica principal del fragmento:
+     * - Muestra datos del usuario.
+     * - Configura acciones de cerrar sesión y eliminar cuenta.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Obtener datos del usuario desde InnerActivity.
+        // Obtiene al usuario actual desde la actividad contenedora
         val innerActivity = activity as? InnerActivity
         val user = innerActivity?.currentUser
 
-        // Asigna los datos en las vistas
-        binding.tvUserName.text = user?.name ?: "Nombre desconocido"
-        binding.tvUserSurname.text = user?.surname ?: "Apellidos desconocidos"
-        binding.tvUserEmail.text = user?.email ?: "Correo desconocido"
+        // Muestra nombre, apellidos y correo en la UI o textos por defecto si es nulo
+        binding.tvUserName.text = user?.name ?: getString(R.string.unknown_name)
+        binding.tvUserSurname.text = user?.surname ?: getString(R.string.unknown_surname)
+        binding.tvUserEmail.text = user?.email ?: getString(R.string.unknown_email)
 
-        // Configura el Spinner de idiomas
-        val languages = listOf("Español", "English", "Русский")
-        val adapter = android.widget.ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, languages)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        // Acción para "Cerrar sesión"
+        // Acción: cerrar sesión
         binding.cardSignOut.setOnClickListener {
-            Snackbar.make(binding.root, "Cerrando sesión...", Snackbar.LENGTH_SHORT).show()
-            val intent = Intent(requireContext(), MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            // Muestra mensaje breve y redirige a la pantalla de login (MainActivity)
+            Snackbar.make(binding.root, R.string.signing_out, Snackbar.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), MainActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            }
             startActivity(intent)
             requireActivity().finish()
         }
 
-        // Acción para "Borrar cuenta"
+        // Acción: borrar cuenta del usuario actual
         binding.cardDeleteAccount.setOnClickListener {
-            Snackbar.make(binding.root, "Borrando cuenta...", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, R.string.deleting_account, Snackbar.LENGTH_SHORT).show()
+
+            // Si hay usuario logueado, intenta eliminarlo
             user?.let { usuario ->
-                usuarioViewModel.deleteUserByEmail(usuario.email,
+                usuarioViewModel.deleteUserByEmail(
+                    usuario.email,
                     onComplete = {
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        // Una vez borrado, redirige a login
+                        val intent = Intent(requireContext(), MainActivity::class.java).apply {
+                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        }
                         startActivity(intent)
                         requireActivity().finish()
                     },
                     onError = { mensaje ->
+                        // Si hay error al eliminar, muestra un mensaje al usuario
                         Snackbar.make(binding.root, mensaje, Snackbar.LENGTH_SHORT).show()
                     }
                 )
             } ?: run {
-                Snackbar.make(binding.root, "No se encontraron datos del usuario", Snackbar.LENGTH_SHORT).show()
+                // Si no se pudo obtener el usuario actual, muestra error
+                Snackbar.make(binding.root, R.string.no_user_data_found, Snackbar.LENGTH_SHORT).show()
             }
         }
     }
 
+    /**
+     * Libera el binding al destruir la vista para evitar fugas de memoria.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

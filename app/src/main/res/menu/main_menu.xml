@@ -7,18 +7,18 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/menu_home"
-        android:title="Inicio"
+        android:title="@string/menu_home"
         app:showAsAction="never" />
     <item
         android:id="@+id/menu_catalog"
-        android:title="Catálogo"
+        android:title="@string/menu_catalog"
         app:showAsAction="never" />
     <item
         android:id="@+id/menu_reservations"
-        android:title="Reservas"
+        android:title="@string/menu_reservations"
         app:showAsAction="never" />
     <item
         android:id="@+id/menu_about"
-        android:title="About"
+        android:title="@string/menu_about"
         app:showAsAction="never" />
 </menu>

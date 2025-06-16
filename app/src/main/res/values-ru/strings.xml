@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Библиотека Николаса Сальмерона</string>
-    <!--  TODO: Remove or change this placeholder text  -->
-    <string name="hello_blank_fragment">Пустой фрагмент</string>
+    <string name="toolbar_title_inner">Inner Activity</string>
     <string name="fr_login_user">Пользователь</string>
     <string name="form_button_desc">Добавить новый</string>
     <string name="search_hint">Поиск</string>
@@ -47,4 +46,38 @@
     <string name="go_to_login">Уже есть аккаунт? Войдите</string>
     <string name="texto_bienvenida">"Исследуйте наш широкий каталог книг, от классики до новейших публикаций. Найдите свою следующую любимую книгу."</string>
     <string name="texto_institucional">"Библиотека Николаса Сальмерона Университета Альмерии стремится облегчить доступ и распространение информационных ресурсов, а также сотрудничать в процессах создания знаний, способствуя достижению целей университета. В рамках сотрудничества библиотека входит в несколько организаций:\n\n- Консорциум университетских библиотек Андалусии (CBUA)\n- Испанская сеть университетских и научных библиотек (REBIUN)\n- Ассоциация пользователей Ex Libris в Испании (Expania)."</string>
+    <string name="menu_home">Главная</string>
+    <string name="menu_catalog">Каталог</string>
+    <string name="menu_reservations">Бронирования</string>
+    <string name="menu_about">О нас</string>
+    <string name="title_libro_detail">Детали книги</string>
+    <string name="title_book_form">Форма книги</string>
+    <string name="title_user_profile">Профиль пользователя</string>
+    <string name="title_camera">Камера</string>
+    <string name="permission_gallery_denied">Доступ к галерее запрещён</string>
+    <string name="permission_gallery_needed">Требуется разрешение для доступа к галерее</string>
+    <string name="error_fields_required">Пожалуйста, заполните все обязательные поля</string>
+    <string name="book_updated">Книга успешно обновлена</string>
+    <string name="book_created">Книга успешно добавлена</string>
+    <string name="error_no_user_data">Не удалось получить данные пользователя</string>
+    <string name="reserva_creada_para">Бронирование создано для &quot;%1$s&quot;</string>
+    <string name="success_login">Вход выполнен успешно</string>
+    <string name="error_invalid_credentials">Неверный адрес электронной почты или пароль</string>
+    <string name="error_complete_all_fields">Пожалуйста, заполните все поля</string>
+    <string name="error_passwords_not_match">Пароли не совпадают</string>
+    <string name="error_email_exists">Электронная почта уже существует. Используйте другую</string>
+    <string name="success_registered">Регистрация завершена</string>
+    <string name="reservation_deleted">Бронирование удалено</string>
+    <string name="unknown_name">Имя неизвестно</string>
+    <string name="unknown_surname">Фамилия неизвестна</string>
+    <string name="unknown_email">Электронная почта неизвестна</string>
+    <string name="signing_out">Выход из системы...</string>
+    <string name="deleting_account">Удаление аккаунта...</string>
+    <string name="no_user_data_found">Данные пользователя не найдены</string>
+    <string name="spanish">Испанский</string>
+    <string name="english">Английский</string>
+    <string name="russian">Русский</string>
+    <string name="error_reserva_existente">У вас уже есть бронь на "%1$s"</string>
+    <string name="reserva_exitosa">Бронирование успешно выполнено!</string>
+    <string name="reserva_eliminada">Бронирование успешно удалено.</string>
 </resources>

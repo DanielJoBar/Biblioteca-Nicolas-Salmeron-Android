@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="toolbar_title_inner">Inner Activity</string>
     <string name="app_name">Nicolas Salmeron Library</string>
-    <!--  TODO: Remove or change this placeholder text  -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fr_login_user">User</string>
     <string name="form_button_desc">Add new</string>
     <string name="search_hint">Search</string>
@@ -30,7 +29,7 @@
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
     <string name="login_button">Log In</string>
-    <string name="register_button">Register</string>
+    <string name="register_button">Sign up </string>
     <string-array name="genre_options">
         <item>Realistic</item>
         <item>Fiction</item>
@@ -47,4 +46,38 @@
     <string name="go_to_login">Already have an account? Log in</string>
     <string name="texto_bienvenida">"Explore our wide catalog of books, from classics to the latest releases. Find your next favorite read."</string>
     <string name="texto_institucional">"The Nicolás Salmerón Library of the University of Almería aims to facilitate access and dissemination of information resources and collaborate in knowledge generation processes, contributing to the university’s goals. It cooperates with various organizations:\n\n- The Andalusian University Libraries Consortium (CBUA)\n- The Spanish Network of University and Scientific Libraries (REBIUN)\n- The Association of Ex Libris Users in Spain (Expania)."</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_catalog">Catalog</string>
+    <string name="menu_reservations">Reservations</string>
+    <string name="menu_about">About</string>
+    <string name="title_libro_detail">Book Details</string>
+    <string name="title_book_form">Book Form</string>
+    <string name="title_user_profile">User Profile</string>
+    <string name="title_camera">Camera</string>
+    <string name="permission_gallery_denied">Permission denied to access the gallery</string>
+    <string name="permission_gallery_needed">Permission is needed to access the gallery</string>
+    <string name="error_fields_required">Please fill in all required fields</string>
+    <string name="book_updated">Book updated successfully</string>
+    <string name="book_created">Book added successfully</string>
+    <string name="error_no_user_data">Could not retrieve user data</string>
+    <string name="reserva_creada_para">Reservation created for &quot;%1$s&quot;</string>
+    <string name="success_login">Login successful</string>
+    <string name="error_invalid_credentials">Invalid email or password</string>
+    <string name="error_complete_all_fields">Please complete all fields</string>
+    <string name="error_passwords_not_match">Passwords do not match</string>
+    <string name="error_email_exists">Email already exists. Please use another</string>
+    <string name="success_registered">Registration completed</string>
+    <string name="reservation_deleted">Reservation deleted</string>
+    <string name="unknown_name">Unknown name</string>
+    <string name="unknown_surname">Unknown surname</string>
+    <string name="unknown_email">Unknown email</string>
+    <string name="signing_out">Signing out...</string>
+    <string name="deleting_account">Deleting account...</string>
+    <string name="no_user_data_found">No user data found</string>
+    <string name="spanish">Spanish</string>
+    <string name="english">English</string>
+    <string name="russian">Russian</string>
+    <string name="error_reserva_existente">You already have a reservation for "%1$s"</string>
+    <string name="reserva_exitosa">Reservation completed successfully!</string>
+    <string name="reserva_eliminada">Reservation deleted successfully.</string>
 </resources>

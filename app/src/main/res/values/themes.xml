@@ -1,11 +1,20 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Theme.BibliotecaNicolasSalmeron" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Personaliza tus atributos acá -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorSecondary">@color/teal_200</item>
         <item name="android:fontFamily">@font/looply_marker</item>
+        <item name="toolbarStyle">@style/Widget.Custom.Toolbar</item>
     </style>
+    <!-- Estilo personalizado para el Toolbar -->
+    <style name="Widget.Custom.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/brand_orange</item>
+        <item name="titleTextColor">@color/white</item>
+        <item name="subtitleTextColor">@color/white</item>
+    </style>
+    <style name="CustomPopupMenu" parent="ThemeOverlay.Material3.Light">
+        <item name="android:textColor">@color/black</item>
 
+    </style>
 </resources>
