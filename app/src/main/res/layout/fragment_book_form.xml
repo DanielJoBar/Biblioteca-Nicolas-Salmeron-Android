@@ -1,0 +1,146 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootBookForm"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <FrameLayout
+                android:id="@+id/flImageContainer"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="60dp">
+
+                <ImageView
+                    android:id="@+id/ivBookImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/no_image" />
+
+                <ImageView
+                    android:id="@+id/ivOverlayIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|end"
+                    android:src="@drawable/editar" />
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/etTitle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/hint_title"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/looply_marker" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvGenreLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:hint="@string/hint_genre"
+                android:fontFamily="@font/looply_marker">
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteGenre"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/looply_marker"
+                    android:contentDescription="@string/hint_genre"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <EditText
+                android:id="@+id/etIsbn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/hint_isbn"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/looply_marker" />
+
+            <EditText
+                android:id="@+id/etAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/hint_author"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/looply_marker" />
+
+            <EditText
+                android:id="@+id/etSummary"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/hint_summary"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/looply_marker" />
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_submit"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="32dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/layoutMiniMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fcd39c"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/miniMenuContainer"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:layout_gravity="bottom"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/optionGallery"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:padding="12dp"
+                android:text="@string/option_gallery"
+                android:textColor="@android:color/black"
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+            <TextView
+                android:id="@+id/optionCamera"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:padding="12dp"
+                android:text="@string/option_camera"
+                android:textColor="@android:color/black"
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+            <TextView
+                android:id="@+id/optionRemove"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:padding="12dp"
+                android:text="@string/option_remove"
+                android:textColor="@android:color/black"
+                android:textAppearance="?attr/textAppearanceBody1" />
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

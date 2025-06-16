@@ -1,0 +1,11 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.BibliotecaNicolasSalmeron" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Personaliza tus atributos acá -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="android:fontFamily">@font/looply_marker</item>
+    </style>
+
+</resources>

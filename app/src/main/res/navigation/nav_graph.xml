@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <!-- LoginFragment: pantalla de inicio de sesión -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.bibliotecanicolassalmeron.ui.fragments.LoginFragment"
+        android:label="Login">
+        <!-- Acción para ir a HomeFragment tras iniciar sesión pasando el email -->
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment">
+            <!-- Definición del argumento email -->
+            <argument
+                android:name="email"
+                app:argType="string" />
+        </action>
+        <!-- Acción para ir a RegisterFragment desde LoginFragment -->
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+
+    <!-- RegisterFragment: pantalla de registro -->
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.bibliotecanicolassalmeron.ui.fragments.RegisterFragment"
+        android:label="Register">
+        <!-- Acción para volver a LoginFragment tras registrar -->
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment">
+        </action>
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment"
+            app:destination="@id/homeFragment">
+            <argument
+                android:name="email"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <!-- HomeFragment: pantalla principal tras iniciar sesión -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.bibliotecanicolassalmeron.ui.fragments.HomeFragment"
+        android:label="Home">
+        <!-- Declaramos el argumento email para que Safe Args lo gestione -->
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
+
+    <!-- Fragmentos adicionales -->
+    <fragment
+        android:id="@+id/catalogFragment"
+        android:name="com.example.bibliotecanicolassalmeron.ui.fragments.CatalogFragment"
+        android:label="Catalog" />
+
+    <fragment
+        android:id="@+id/reservationFragment"
+        android:name="com.example.bibliotecanicolassalmeron.ui.fragments.ReservationFragment"
+        android:label="Reservation" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.bibliotecanicolassalmeron.ui.fragments.AboutFragment"
+        android:label="About" />
+
+</navigation>

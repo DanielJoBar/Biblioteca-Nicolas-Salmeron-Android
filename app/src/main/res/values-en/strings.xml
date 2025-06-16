@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nicolas Salmeron Library</string>
+    <!--  TODO: Remove or change this placeholder text  -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fr_login_user">User</string>
+    <string name="form_button_desc">Add new</string>
+    <string name="search_hint">Search</string>
+    <string name="libro_eliminado">Book deleted</string>
+    <string name="btn_take_picture_desc">Take picture</string>
+    <string name="book_title">Book Title</string>
+    <string name="book_genre">Genre</string>
+    <string name="book_isbn">ISBN</string>
+    <string name="book_author">Author</string>
+    <string name="book_summary_default">No summary available</string>
+    <string name="hint_genre">Genre</string>
+    <string name="hint_title">Title</string>
+    <string name="btn_submit">Save Book</string>
+    <string name="hint_summary">Summary</string>
+    <string name="hint_author">Author</string>
+    <string name="hint_isbn">ISBN</string>
+    <string name="option_gallery">Upload image from gallery</string>
+    <string name="option_camera">Take a photo</string>
+    <string name="option_remove">Remove photo</string>
+    <string name="btn_reserve">Reserve</string>
+    <string name="btn_edit">Edit</string>
+    <string name="about_description">I am Daniel Jódar Barbero, a second-year student of Multiplatform Application Development (DAM) at CPIFP Alan Turing. I am deeply interested in technology and how we can use it to create innovative and useful solutions. For me, this path is not just an academic goal, but a passion that motivates me to continuously improve.</string>
+    <string name="speakable_genre_dropdown">Select book genre. Tap to expand options.</string>
+    <string name="delete_button_description">Delete book</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Log In</string>
+    <string name="register_button">Register</string>
+    <string-array name="genre_options">
+        <item>Realistic</item>
+        <item>Fiction</item>
+        <item>Fantasy</item>
+        <item>Mystery</item>
+        <item>Romance</item>
+    </string-array>
+    <string name="name_hint">First Name</string>
+    <string name="lastname_hint">Last Name</string>
+    <string name="username_hint">Username</string>
+    <string name="gmail_hint">Email Address</string>
+    <string name="repeat_password_hint">Repeat Password</string>
+    <string name="confirm_register">Confirm Registration</string>
+    <string name="go_to_login">Already have an account? Log in</string>
+    <string name="texto_bienvenida">"Explore our wide catalog of books, from classics to the latest releases. Find your next favorite read."</string>
+    <string name="texto_institucional">"The Nicolás Salmerón Library of the University of Almería aims to facilitate access and dissemination of information resources and collaborate in knowledge generation processes, contributing to the university’s goals. It cooperates with various organizations:\n\n- The Andalusian University Libraries Consortium (CBUA)\n- The Spanish Network of University and Scientific Libraries (REBIUN)\n- The Association of Ex Libris Users in Spain (Expania)."</string>
+</resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1043145144824",
+    "project_id": "biblioteca-nicolas-salmeron",
+    "storage_bucket": "biblioteca-nicolas-salmeron.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1043145144824:android:e08c52a9dbf79c4a10be0d",
+        "android_client_info": {
+          "package_name": "com.example.bibliotecanicolassalmeron"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIAofhKkHaRFgjFb0qal7gLBBKdCa2J6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Библиотека Николаса Сальмерона</string>
+    <!--  TODO: Remove or change this placeholder text  -->
+    <string name="hello_blank_fragment">Пустой фрагмент</string>
+    <string name="fr_login_user">Пользователь</string>
+    <string name="form_button_desc">Добавить новый</string>
+    <string name="search_hint">Поиск</string>
+    <string name="libro_eliminado">Книга удалена</string>
+    <string name="btn_take_picture_desc">Сделать фотографию</string>
+    <string name="book_title">Название книги</string>
+    <string name="book_genre">Жанр</string>
+    <string name="book_isbn">ISBN</string>
+    <string name="book_author">Автор</string>
+    <string name="book_summary_default">Резюме отсутствует</string>
+    <string name="hint_genre">Жанр</string>
+    <string name="hint_title">Название</string>
+    <string name="btn_submit">Сохранить книгу</string>
+    <string name="hint_summary">Резюме</string>
+    <string name="hint_author">Автор</string>
+    <string name="hint_isbn">ISBN</string>
+    <string name="option_gallery">Загрузить изображение из галереи</string>
+    <string name="option_camera">Сделать фото</string>
+    <string name="option_remove">Удалить фото</string>
+    <string name="btn_reserve">Забронировать</string>
+    <string name="btn_edit">Редактировать</string>
+    <string name="about_description">Я — Даниэль Йодар Барберо, студент второго курса многоплатформенной разработки приложений (DAM) в CPIFP Алан Турин. Я глубоко увлечён технологиями и тем, как мы можем использовать их для создания инновационных и полезных решений. Для меня этот путь — не только академическая цель, но и страсть, которая мотивирует меня постоянно совершенствоваться.</string>
+    <string name="speakable_genre_dropdown">Выберите жанр книги. Нажмите, чтобы развернуть список.</string>
+    <string name="delete_button_description">Удалить книгу</string>
+    <string name="email_hint">Электронная почта</string>
+    <string name="password_hint">Пароль</string>
+    <string name="login_button">Войти</string>
+    <string name="register_button">Регистрация</string>
+    <string-array name="genre_options">
+        <item>Реалистический</item>
+        <item>Фантастика</item>
+        <item>Фэнтези</item>
+        <item>Детектив</item>
+        <item>Роман</item>
+    </string-array>
+    <string name="name_hint">Имя</string>
+    <string name="lastname_hint">Фамилия</string>
+    <string name="username_hint">Имя пользователя</string>
+    <string name="gmail_hint">Электронная почта</string>
+    <string name="repeat_password_hint">Повторите пароль</string>
+    <string name="confirm_register">Подтвердить регистрацию</string>
+    <string name="go_to_login">Уже есть аккаунт? Войдите</string>
+    <string name="texto_bienvenida">"Исследуйте наш широкий каталог книг, от классики до новейших публикаций. Найдите свою следующую любимую книгу."</string>
+    <string name="texto_institucional">"Библиотека Николаса Сальмерона Университета Альмерии стремится облегчить доступ и распространение информационных ресурсов, а также сотрудничать в процессах создания знаний, способствуя достижению целей университета. В рамках сотрудничества библиотека входит в несколько организаций:\n\n- Консорциум университетских библиотек Андалусии (CBUA)\n- Испанская сеть университетских и научных библиотек (REBIUN)\n- Ассоциация пользователей Ex Libris в Испании (Expania)."</string>
+</resources>
