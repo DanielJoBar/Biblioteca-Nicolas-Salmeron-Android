@@ -7,6 +7,7 @@ plugins {
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.gms.google-services")
+    id("org.jetbrains.dokka") version "2.0.0"
 }
 
 android {
